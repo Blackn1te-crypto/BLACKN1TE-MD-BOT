@@ -1,8 +1,8 @@
 /**
  * ═══════════════════════════════════════════════════════════════════
- *  ⚡ BL@CKN1TE-MD — NEON LIVE README GENERATOR
- *  Powered by BL@CKN1TE — THE INCISIVE TRI-HAT HACKER 🛡️
- *  One file. Everything. Auto-writes README.md with live telemetry.
+ *  ⚡ BL@CKN1TE-MD — NEON LIVE README GENERATOR (v2.0)
+ *  🛡️ Powered by BL@CKN1TE — THE INCISIVE TRI-HAT HACKER
+ *  One file. Full neon. Live telemetry. Auto-writes README.md
  * ═══════════════════════════════════════════════════════════════════
  */
 
@@ -12,12 +12,13 @@ import axios from 'axios';
 
 // ─────────────────────────── CONFIG ───────────────────────────
 const CONFIG = {
-  username:  process.env.USERNAME  || 'Blackn1te-crypto',
-  repo:      process.env.REPO      || 'BLACKN1TE-MD-BOT',
-  token:     process.env.GITHUB_TOKEN || '',
-  tgBot:     'BLCKN1TE_MD_BOT',
-  tgLink:    'https://t.me/BLCKN1TE_MD_BOT',
-  outFile:   path.resolve(process.cwd(), 'README.md'),
+  username:   process.env.USERNAME   || 'Blackn1te-crypto',
+  repo:       process.env.REPO       || 'BLACKN1TE-MD-BOT',
+  token:      process.env.GITHUB_TOKEN || '',
+  tgBot:      'BLCKN1TE_MD_BOT',
+  tgLink:     'https://t.me/BLCKN1TE_MD_BOT',
+  tgContact:  'https://t.me/blackn1te_incisive_trihathacker',
+  outFile:    path.resolve(process.cwd(), 'README.md'),
 };
 
 // ─────────────────────────── NEON ANSI ───────────────────────────
@@ -27,6 +28,7 @@ const N = {
   purple: (s: string) => `\x1b[95m${s}\x1b[0m`,
   pink:   (s: string) => `\x1b[38;5;206m${s}\x1b[0m`,
   dim:    (s: string) => `\x1b[2m${s}\x1b[0m`,
+  bold:   (s: string) => `\x1b[1m${s}\x1b[0m`,
 };
 
 // ─────────────────────────── TYPES ───────────────────────────
@@ -36,11 +38,12 @@ interface LiveData {
   followers: number;
   repos: number;
   watchers: number;
+  issues: number;
   lastPing: string;
   generatedAt: string;
 }
 
-// ─────────────────────────── FETCH LIVE DATA ───────────────────────────
+// ─────────────────────────── FETCH LIVE ───────────────────────────
 async function fetchLive(): Promise<LiveData> {
   const headers = CONFIG.token ? { Authorization: `token ${CONFIG.token}` } : {};
   const now = new Date().toUTCString();
@@ -57,13 +60,14 @@ async function fetchLive(): Promise<LiveData> {
       followers:   user.data.followers          ?? 0,
       repos:       user.data.public_repos       ?? 0,
       watchers:    repo.data.subscribers_count  ?? 0,
+      issues:      repo.data.open_issues_count  ?? 0,
       lastPing:    new Date(repo.data.pushed_at).toUTCString(),
       generatedAt: now,
     };
   } catch (err) {
     console.error(N.purple('⚠️  Live fetch failed — using fallback:'), (err as Error).message);
     return {
-      stars: 0, forks: 0, followers: 0, repos: 0, watchers: 0,
+      stars: 0, forks: 0, followers: 0, repos: 0, watchers: 0, issues: 0,
       lastPing: 'unknown', generatedAt: now,
     };
   }
@@ -74,17 +78,17 @@ function buildReadme(live: LiveData): string {
   return `<div align="center">
 
 <!-- ══════════════ NEON WAVE HEADER ══════════════ -->
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:00FFAA,25:00BFFF,50:BF00FF,75:FF00AA,100:00FFAA&height=220&section=header&text=BL%40CKN1TE-MD&fontSize=72&fontColor=ffffff&animation=twinkling&fontAlignY=32&desc=POWERED%20BY%20THE%20INCISIVE%20TRI-HAT%20HACKER&descAlignY=55&descSize=16" width="100%"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:00FFAA,25:00BFFF,50:BF00FF,75:FF00AA,100:00FFAA&height=230&section=header&text=BL%40CKN1TE-MD&fontSize=74&fontColor=ffffff&animation=twinkling&fontAlignY=32&desc=POWERED%20BY%20THE%20INCISIVE%20TRI-HAT%20HACKER&descAlignY=56&descSize=16" width="100%"/>
 
 <!-- ══════════════ NEON TYPING CAPTIONS ══════════════ -->
 <a href="https://github.com/${CONFIG.username}">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=800&size=24&duration=2200&pause=500&color=00FFAA&center=true&vCenter=true&multiline=true&width=800&height=140&lines=%3E_+const+bot+%3D+new+BLACKN1TE_MD()%3B;%3E_+bot.engine+%3D+%22TypeScript%22%3B;%3E_+bot.sync(%22Telegram%22)%3B+%2F%2F+%40${CONFIG.tgBot};%3E_+bot.deploy()%3B+%2F%2F+%F0%9F%9B%A1%EF%B8%8F+TRI-HAT+ONLINE" alt="Neon TypeScript Captions"/>
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=800&size=24&duration=2200&pause=500&color=00FFAA&center=true&vCenter=true&multiline=true&width=820&height=150&lines=%3E_+const+bot+%3D+new+BLACKN1TE_MD()%3B;%3E_+bot.engine+%3D+%22TypeScript%22%3B;%3E_+bot.sync(%22Telegram%22)%3B+%2F%2F+%40${CONFIG.tgBot};%3E_+bot.deploy()%3B+%2F%2F+%F0%9F%9B%A1%EF%B8%8F+TRI-HAT+ONLINE" alt="Neon TS Captions"/>
 </a>
 
 <br/>
 
 <a href="${CONFIG.tgLink}">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=18&duration=3000&pause=800&color=BF00FF&center=true&vCenter=true&width=700&height=60&lines=%F0%9F%94%97+%40${CONFIG.tgBot}+%E2%80%A2+SYNCED+%26+LIVE+24%2F7;%E2%9A%A1+Powered+by+BL%40CKN1TE+THE+INCISIVE+TRI-HAT+HACKER" alt="Neon Tagline"/>
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=18&duration=3000&pause=800&color=BF00FF&center=true&vCenter=true&width=760&height=60&lines=%F0%9F%94%97+%40${CONFIG.tgBot}+%E2%80%A2+SYNCED+%26+LIVE+24%2F7;%E2%9A%A1+Powered+by+BL%40CKN1TE+THE+INCISIVE+TRI-HAT+HACKER" alt="Neon Tagline"/>
 </a>
 
 </div>
@@ -114,16 +118,18 @@ const telemetry = {
   forks:     "${live.forks}",
   followers: "${live.followers}",
   repos:     "${live.repos}",
-  watchers:  "${live.watchers}"
+  watchers:  "${live.watchers}",
+  issues:    "${live.issues}"
 };
 \`\`\`
 
 \`\`\`ts
 // 🔗 TELEGRAM BRIDGE — live
 const telegramBridge = {
-  bot:    "@${CONFIG.tgBot}",
-  link:   "${CONFIG.tgLink}",
-  status: "⚡ CONNECTED"
+  bot:     "@${CONFIG.tgBot}",
+  link:    "${CONFIG.tgLink}",
+  contact: "${CONFIG.tgContact}",
+  status:  "⚡ CONNECTED"
 };
 \`\`\`
 
@@ -136,7 +142,7 @@ const telegramBridge = {
 <div align="center">
 
 <a href="${CONFIG.tgLink}">
-  <img src="https://img.shields.io/badge/⚡_OPEN_@${CONFIG.tgBot.replace('_','__')}-00FFAA?style=for-the-badge&labelColor=000000&logo=telegram&logoColor=00FFAA" height="42"/>
+  <img src="https://img.shields.io/badge/⚡_OPEN_@BLCKN1TE__MD__BOT-00FFAA?style=for-the-badge&labelColor=000000&logo=telegram&logoColor=00FFAA" height="44"/>
 </a>
 
 <br/><br/>
@@ -158,7 +164,7 @@ const install = async () => {
   await npm.install();
 
   const telegramBot = await botFather.createBot({
-    name: "BLCKN1TE_MD",
+    name:     "BLCKN1TE_MD",
     username: "@${CONFIG.tgBot}"
   });
 
@@ -241,16 +247,18 @@ npm start
 \`\`\`ts
 // ═══════════════ OPERATOR PROFILE ═══════════════
 const BLACKN1TE = {
-  role:   "🛡️ Ethical Hacker",
-  alias:  "The Incisive Tri-Hat Hacker",
-  skills: ["TypeScript", "Node.js", "Bot Automation", "Security"],
-  bot:    "@${CONFIG.tgBot}",
-  github: "https://github.com/${CONFIG.username}"
+  role:    "🛡️ Ethical Hacker",
+  alias:   "The Incisive Tri-Hat Hacker",
+  skills:  ["TypeScript", "Node.js", "Bot Automation", "Security"],
+  bot:     "@${CONFIG.tgBot}",
+  contact: "${CONFIG.tgContact}",
+  github:  "https://github.com/${CONFIG.username}"
 };
 \`\`\`
 
 [![GitHub](https://img.shields.io/badge/GitHub-${CONFIG.username}-00FFAA?style=for-the-badge&logo=github&logoColor=black)](https://github.com/${CONFIG.username})
-[![Telegram](https://img.shields.io/badge/Telegram-@${CONFIG.tgBot.replace('_','__')}-BF00FF?style=for-the-badge&logo=telegram&logoColor=white)](${CONFIG.tgLink})
+[![Telegram](https://img.shields.io/badge/Telegram-@BLCKN1TE__MD__BOT-BF00FF?style=for-the-badge&logo=telegram&logoColor=white)](${CONFIG.tgLink})
+[![Contact](https://img.shields.io/badge/Contact-Tri--Hat_Hacker-FF00AA?style=for-the-badge&logo=telegram&logoColor=white)](${CONFIG.tgContact})
 
 </div>
 
@@ -258,7 +266,7 @@ const BLACKN1TE = {
 
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:00FFAA,25:00BFFF,50:BF00FF,75:FF00AA,100:00FFAA&height=160&section=footer&text=POWERED+BY+BL%40CKN1TE+%E2%9A%A1+TRI-HAT+HACKER&fontSize=22&fontColor=ffffff&animation=twinkling"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:00FFAA,25:00BFFF,50:BF00FF,75:FF00AA,100:00FFAA&height=170&section=footer&text=POWERED+BY+BL%40CKN1TE+%E2%9A%A1+TRI-HAT+HACKER&fontSize=22&fontColor=ffffff&animation=twinkling"/>
 
 </div>
 `;
@@ -266,17 +274,17 @@ const BLACKN1TE = {
 
 // ─────────────────────────── MAIN ───────────────────────────
 async function main() {
-  console.log(N.green('⚡ NEON README Generator — BL@CKN1TE TRI-HAT'));
+  console.log(N.green('⚡ NEON README Generator v2.0 — BL@CKN1TE TRI-HAT'));
   console.log(N.dim(`   → ${CONFIG.username}/${CONFIG.repo}`));
 
   const live = await fetchLive();
-  console.log(N.cyan(`📊 Live: ⭐${live.stars}  🍴${live.forks}  👥${live.followers}  📦${live.repos}`));
+  console.log(N.cyan(`📊 Live: ⭐${live.stars}  🍴${live.forks}  👥${live.followers}  📦${live.repos}  ⚠️${live.issues}`));
 
   const md = buildReadme(live);
   fs.writeFileSync(CONFIG.outFile, md, 'utf-8');
 
   console.log(N.purple(`✅ README.md written → ${CONFIG.outFile}`));
-  console.log(N.green('🛡️ Tri-Hat out.'));
+  console.log(N.bold(N.green('🛡️ Tri-Hat out.')));
 }
 
 main().catch((e) => {
