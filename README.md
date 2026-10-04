@@ -11,7 +11,7 @@
 <!-- ═══ LIVE MONITOR 01 — STATUS BADGES ═══ -->
 <img src="https://img.shields.io/badge/⚡_CORE-ONLINE-00FFAA?style=for-the-badge&labelColor=000000"/>
 <img src="https://img.shields.io/badge/🛡️_TRI--HAT-ACTIVE-BF00FF?style=for-the-badge&labelColor=000000"/>
-<img src="https://img.shields.io/badge/🟢_MATRIX-RAINING-00FF00?style=for-the-badge&labelColor=000000"/>
+<img src="https://img.shields.io/badge/🟢_STATUS-LIVE-00FF00?style=for-the-badge&labelColor=000000"/>
 <img src="https://img.shields.io/badge/🔐_SECURITY-ENCRYPTED-FF00AA?style=for-the-badge&labelColor=000000"/>
 
 <br/><br/>
@@ -42,7 +42,7 @@
 [OK]   ✅ Encryption handshake complete
 [BOOT] 🔗 Linking WhatsApp ⇄ Telegram bridge...
 [OK]   ✅ Telegram bot @BLCKN1TE_MD_BOT authenticated
-[BOOT] 🟢 Matrix rain canvas online...
+[BOOT] 🟢 Neon live monitor online...
 [OK]   ✅ All systems green
 [BOOT] 🚀 Deploying BL@CKN1TE-MD...
 [READY] ⚡ Bot is LIVE — 24/7 uptime guaranteed
