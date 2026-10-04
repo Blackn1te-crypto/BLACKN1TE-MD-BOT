@@ -24,13 +24,6 @@
 <img src="https://img.shields.io/badge/🔗_SYNC-TELEGRAM-BF00FF?style=for-the-badge&labelColor=000000"/>
 <img src="https://img.shields.io/badge/🟢_UPTIME-24/7-FF00AA?style=for-the-badge&labelColor=000000"/>
 
-<br/><br/>
-
-<!-- ═══════════ LIVE BOT LINK ═══════════ -->
-<a href="https://t.me/BLCKN1TE_MD_BOT">
-  <img src="https://img.shields.io/badge/⚡_OPEN_@BLCKN1TE__MD__BOT-00FFAA?style=for-the-badge&labelColor=000000&logo=telegram&logoColor=00FFAA" height="48"/>
-</a>
-
 </div>
 
 ---
@@ -65,7 +58,7 @@
 <br/>
 
 <a href="https://t.me/BLCKN1TE_MD_BOT">
-  <img src="https://img.shields.io/badge/⚡_TAP_TO_OPEN-@BLCKN1TE__MD__BOT-00FFAA?style=for-the-badge&labelColor=000000&logo=telegram&logoColor=00FFAA" height="46"/>
+  <img src="https://img.shields.io/badge/⚡_OPEN_@BLCKN1TE__MD__BOT-00FFAA?style=for-the-badge&labelColor=000000&logo=telegram&logoColor=00FFAA" height="48"/>
 </a>
 
 <br/><br/>
