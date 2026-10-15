@@ -1,9 +1,9 @@
 const settings = {
-  packname: 'Knight Bot',
-  author: '‎',
+  packname: 'BL@CKN1TE-MD-BOT',
+  author: '‎BL@CKN1TE THE INCISIVE TRI-HAT HACKER',
   botName: "Knight Bot",
-  botOwner: 'Professor', // Your name
-  ownerNumber: '919876543210', //Set your number here without + symbol, just add country code & number without any space
+  botOwner: 'BL@CKN1TE', // Your name
+  ownerNumber: '263780540231', //Set your number here without + symbol, just add country code & number without any space
   giphyApiKey: 'qnl7ssQChTdPjsKta2Ax2LMaGXz303tq',
   commandMode: "public",
   maxStoreMessages: 20, 
